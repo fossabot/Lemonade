@@ -1,0 +1,25 @@
+os:
+  - linux
+  - osx
+
+language: php
+
+php:
+  - '7.3'
+
+services:
+  - mysql
+
+notifications:
+  email:
+    recipients:
+      - edoardo.savini@fablabromagna.org
+    on_success: always
+    on_failure: always
+
+before_script:
+  - composer self-update
+  - composer install --no-interaction
+
+before_install:
+  - mysql -e 'CREATE DATABASE lemonade;'
