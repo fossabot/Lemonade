@@ -6,6 +6,14 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ *
+ * @package App
+ *
+ * @property string $first_name First name of the user
+ * @property $last_name  Last name of the user
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -16,7 +24,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name',
+        'last_name',
+        'email',
+        'password',
     ];
 
     /**
@@ -25,7 +36,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -36,4 +48,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->attributes['first_name'] . ' ' . $this->last_name;
+    }
+
+    /**
+     * @return \App\Town|null
+     */
+    public function town() {
+        return $this->belongsTo('App\Town');
+    }
 }
