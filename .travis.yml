@@ -1,6 +1,7 @@
 os:
   - linux
-  - osx
+
+dist: xenial
 
 language: php
 
@@ -24,4 +25,7 @@ before_script:
   - cp .env.travis .env.testing
 
 before_install:
-  - mysql -e 'CREATE DATABASE lemonade;'
+  - mysql -e 'CREATE DATABASE lemonade CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;'
+
+script:
+  - vendor/bin/phpunit
