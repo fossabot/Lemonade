@@ -16,7 +16,7 @@ class CreateTownsTable extends Migration
         Schema::create('towns', function (Blueprint $table) {
             $table->string('belfiore_code')->primary();
 
-            $table->string('nome')->unique();
+            $table->string('name')->unique();
             $table->boolean('is_abroad')->default(false);
 
             $table->unsignedBigInteger('province')->nullable();
@@ -38,6 +38,6 @@ class CreateTownsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('town');
+        Schema::dropIfExists('towns');
     }
 }

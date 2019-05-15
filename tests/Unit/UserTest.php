@@ -32,6 +32,13 @@ class UserTest extends TestCase
 
     public function testUserCreationMassive()
     {
+        $user = factory(User::class)->make();
+        $user->save();
+
+        $this->assertDatabaseHas('users', [
+            'username' => $user->username
+        ]);
+
         $this->assertTrue(true);
     }
 
